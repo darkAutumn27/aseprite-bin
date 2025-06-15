@@ -86,7 +86,7 @@ cmake.exe                                                     ^
   -DLAF_BACKEND=skia                                          ^
   -DSKIA_DIR=%CD%\skia-%SKIA_VERSION%                         ^
   -DSKIA_LIBRARY_DIR=%CD%\skia-%SKIA_VERSION%\out\Release-x64 ^
-  -DSKIA_OPENGL_LIBRARY=                                    || echo failed to configure build && exit /b 1
+  -DSKIA_OPENGL_LIBRARY==opengl32                             || echo failed to configure build && exit /b 1
 
 ninja.exe -C build || echo build failed && exit /b 1
 
