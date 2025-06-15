@@ -75,18 +75,23 @@ rem *** build Aseprite ***
 
 if exist build rd /s /q build
 
+set LINK=opengl32.lib
 cmake.exe                                                     ^
   -G Ninja                                                    ^
   -S aseprite                                                 ^
   -B build                                                    ^
   -DCMAKE_BUILD_TYPE=Release                                  ^
+  -DCMAKE_POLICY_VERSION_MINIMUM=3.5                          ^
+  -DCMAKE_POLICY_DEFAULT_CMP0074=NEW                          ^
+  -DCMAKE_POLICY_DEFAULT_CMP0091=NEW                          ^
+  -DCMAKE_POLICY_DEFAULT_CMP0092=NEW                          ^
   -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded                  ^
   -DENABLE_CCACHE=OFF                                         ^
   -DOPENSSL_USE_STATIC_LIBS=TRUE                              ^
   -DLAF_BACKEND=skia                                          ^
   -DSKIA_DIR=%CD%\skia-%SKIA_VERSION%                         ^
   -DSKIA_LIBRARY_DIR=%CD%\skia-%SKIA_VERSION%\out\Release-x64 ^
-  -DSKIA_OPENGL_LIBRARY=opengl32                             || echo failed to configure build && exit /b 1
+  -DSKIA_OPENGL_LIBRARY=                                      || echo failed to configure build && exit /b 1
 
 ninja.exe -C build || echo build failed && exit /b 1
 
