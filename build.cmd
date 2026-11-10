@@ -40,7 +40,7 @@ where /q ninja.exe || (
 
 rem *** latest Aseprite version ***
 
-set ASEPRITE_VERSION=v1.3.16-beta1
+set ASEPRITE_VERSION=v1.3.18.4
 set SKIA_VERSION=m124-08a5439a6b
 
 echo Building %ASEPRITE_VERSION%
